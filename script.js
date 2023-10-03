@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch(function (error) {
         console.error("Error fetching definition:", error);
         resultDiv.textContent =
-          "An error occurred while fetching the definition.";
+          "Check your spelling.";
       });
   }
 
