@@ -1,16 +1,16 @@
 // using two different fetch request formats for learning purposes
-
-
 function displayQuoteResult(quoteText, author) {
   let quoteResult = document.getElementById("quoteResult");
   quoteResult.innerHTML = `<strong>Quote:</strong> ${quoteText}<br><strong>Author:</strong> ${author}`;
 }
-
 let submitCategoryButton = document.getElementById("submitCategory");
+
+// event listener for category selection
 submitCategoryButton.addEventListener("click", function () {
   let categorySelect = document.getElementById("categorySelect");
   let selectedCategory = categorySelect.value;
 
+// using variable for url and api key fetchh method
   let apiUrl =
     "https://api.api-ninjas.com/v1/quotes?category=" + selectedCategory;
   let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
@@ -39,6 +39,8 @@ submitCategoryButton.addEventListener("click", function () {
     });
 });
 
+// DOMContentLoaded fires once the HTML doc has been COMPLETELY parsed; does not wait for asnycs.
+// "load" is only used to detect a fully loaded-page; DOMContentLoaded is appropriate here.
 document.addEventListener("DOMContentLoaded", function () {
   let form = document.getElementById("wordForm");
   let resultDiv = document.getElementById("result");
@@ -55,6 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+
+// using function fetch url without variables method
   function fetchDefinition(word) {
     console.log("Input word:", word);
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`, {
@@ -79,12 +83,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function displayDefinition(data) {
     resultDiv.innerHTML = "";
-
     if (Array.isArray(data) && data.length > 0) {
       data.forEach((definitionData, index) => {
         let partOfSpeech = definitionData.meanings[0].partOfSpeech;
         let definition = definitionData.meanings[0].definitions[0].definition;
-
         let definitionElement = document.createElement("div");
         definitionElement.innerHTML = `<strong>${partOfSpeech}:</strong> ${definition}`;
         resultDiv.appendChild(definitionElement);
