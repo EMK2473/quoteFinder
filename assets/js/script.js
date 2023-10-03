@@ -1,17 +1,19 @@
 // using two different fetch request formats for learning purposes
+
+
 function displayQuoteResult(quoteText, author) {
-  var quoteResult = document.getElementById("quoteResult");
+  let quoteResult = document.getElementById("quoteResult");
   quoteResult.innerHTML = `<strong>Quote:</strong> ${quoteText}<br><strong>Author:</strong> ${author}`;
 }
 
-var submitCategoryButton = document.getElementById("submitCategory");
+let submitCategoryButton = document.getElementById("submitCategory");
 submitCategoryButton.addEventListener("click", function () {
-  var categorySelect = document.getElementById("categorySelect");
-  var selectedCategory = categorySelect.value;
+  let categorySelect = document.getElementById("categorySelect");
+  let selectedCategory = categorySelect.value;
 
-  var apiUrl =
+  let apiUrl =
     "https://api.api-ninjas.com/v1/quotes?category=" + selectedCategory;
-  var apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
+  let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
 
   fetch(apiUrl, {
     method: "GET",
@@ -27,8 +29,8 @@ submitCategoryButton.addEventListener("click", function () {
       return response.json();
     })
     .then((result) => {
-      var quoteText = result[0].quote;
-      var author = result[0].author;
+      let quoteText = result[0].quote;
+      let author = result[0].author;
       displayQuoteResult(quoteText, author);
       console.log(result);
     })
@@ -38,13 +40,13 @@ submitCategoryButton.addEventListener("click", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("wordForm");
-  const resultDiv = document.getElementById("result");
+  let form = document.getElementById("wordForm");
+  let resultDiv = document.getElementById("result");
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const inputText = document.getElementById("inputText").value;
+    let inputText = document.getElementById("inputText").value;
 
     if (inputText.trim() !== "") {
       fetchDefinition(inputText);
@@ -80,10 +82,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (Array.isArray(data) && data.length > 0) {
       data.forEach((definitionData, index) => {
-        const partOfSpeech = definitionData.meanings[0].partOfSpeech;
-        const definition = definitionData.meanings[0].definitions[0].definition;
+        let partOfSpeech = definitionData.meanings[0].partOfSpeech;
+        let definition = definitionData.meanings[0].definitions[0].definition;
 
-        const definitionElement = document.createElement("div");
+        let definitionElement = document.createElement("div");
         definitionElement.innerHTML = `<strong>${partOfSpeech}:</strong> ${definition}`;
         resultDiv.appendChild(definitionElement);
         console.log("Data Object:", definitionData);
@@ -94,40 +96,3 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// // using two different fetch request formats for learning purposes
-// function displayQuoteResult(quoteText, author) {
-//   var quoteResult = document.getElementById("quoteResult");
-//   quoteResult.innerHTML = `<strong>Quote:</strong> ${quoteText}<br><strong>Author:</strong> ${author}`;
-// }
-
-// var submitCategoryButton = document.getElementById("submitCategory");
-// submitCategoryButton.addEventListener("click", function () {
-//   var categorySelect = document.getElementById("categorySelect");
-//   var selectedCategory = categorySelect.value;
-
-//   var apiUrl = 'https://api.api-ninjas.com/v1/quotes?category=' + selectedCategory;
-//   var apiKey = 'CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw';
-
-//   fetch(apiUrl, {
-//     method: 'GET',
-//     headers: {
-//       'X-Api-Key': apiKey,
-//       'Content-Type': 'application/json'
-//     }
-//   })
-//     .then(response => {
-//       if (!response.ok) {
-//         throw new Error('Network error');
-//       }
-//       return response.json();
-//     })
-//     .then(result => {
-//       var quoteText = result.quote;
-//       var author = result.author;
-//       displayQuoteResult(quoteText, author);
-//       console.log(result);
-//     })
-//     .catch(error => {
-//       console.error('Error:', error);
-//     });
-// })
