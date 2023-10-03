@@ -1,3 +1,42 @@
+// using two different fetch request formats for learning purposes
+function displayQuoteResult(quoteText, author) {
+  var quoteResult = document.getElementById("quoteResult");
+  quoteResult.innerHTML = `<strong>Quote:</strong> ${quoteText}<br><strong>Author:</strong> ${author}`;
+}
+
+var submitCategoryButton = document.getElementById("submitCategory");
+submitCategoryButton.addEventListener("click", function () {
+  var categorySelect = document.getElementById("categorySelect");
+  var selectedCategory = categorySelect.value;
+
+  var apiUrl =
+    "https://api.api-ninjas.com/v1/quotes?category=" + selectedCategory;
+  var apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
+
+  fetch(apiUrl, {
+    method: "GET",
+    headers: {
+      "X-Api-Key": apiKey,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network error");
+      }
+      return response.json();
+    })
+    .then((result) => {
+      var quoteText = result[0].quote;
+      var author = result[0].author;
+      displayQuoteResult(quoteText, author);
+      console.log(result);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("wordForm");
   const resultDiv = document.getElementById("result");
@@ -32,8 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch(function (error) {
         console.error("Error fetching definition:", error);
-        resultDiv.textContent =
-          "Check your spelling.";
+        resultDiv.textContent = "Check your spelling.";
       });
   }
 
@@ -56,3 +94,40 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+// // using two different fetch request formats for learning purposes
+// function displayQuoteResult(quoteText, author) {
+//   var quoteResult = document.getElementById("quoteResult");
+//   quoteResult.innerHTML = `<strong>Quote:</strong> ${quoteText}<br><strong>Author:</strong> ${author}`;
+// }
+
+// var submitCategoryButton = document.getElementById("submitCategory");
+// submitCategoryButton.addEventListener("click", function () {
+//   var categorySelect = document.getElementById("categorySelect");
+//   var selectedCategory = categorySelect.value;
+
+//   var apiUrl = 'https://api.api-ninjas.com/v1/quotes?category=' + selectedCategory;
+//   var apiKey = 'CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw';
+
+//   fetch(apiUrl, {
+//     method: 'GET',
+//     headers: {
+//       'X-Api-Key': apiKey,
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error('Network error');
+//       }
+//       return response.json();
+//     })
+//     .then(result => {
+//       var quoteText = result.quote;
+//       var author = result.author;
+//       displayQuoteResult(quoteText, author);
+//       console.log(result);
+//     })
+//     .catch(error => {
+//       console.error('Error:', error);
+//     });
+// })
