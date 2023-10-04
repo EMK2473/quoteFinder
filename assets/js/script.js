@@ -1,4 +1,3 @@
-
 // using two different fetch request formats for learning purposes
 function displayQuoteResult(quoteText, author) {
   let quoteResult = document.getElementById("quoteResult");
@@ -10,7 +9,7 @@ let submitCategoryButton = document.getElementById("submitCategory");
 submitCategoryButton.addEventListener("click", function () {
   let categorySelect = document.getElementById("categorySelect");
   let selectedCategory = categorySelect.value;
-
+  localStorage.setItem("selectedCategory", selectedCategory);
   // using variables for url and api key fetchh method
   let apiUrl =
     "https://api.api-ninjas.com/v1/quotes?category=" + selectedCategory;
@@ -50,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
 
     let inputText = document.getElementById("inputText").value;
-
+    localStorage.setItem("inputText", inputText);
     if (inputText.trim() !== "") {
       fetchDefinition(inputText);
     } else {
@@ -113,7 +112,7 @@ let submitAuthorButton = document.getElementById("authorForm");
 submitAuthorButton.addEventListener("submit", function (event) {
   event.preventDefault();
   let authorText = document.getElementById("authorText").value;
-
+  localStorage.setItem("authorText", authorText);
   let apiUrl = `https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
   let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
 
@@ -144,7 +143,6 @@ submitAuthorButton.addEventListener("submit", function (event) {
       console.error("Error:", error);
     });
 });
-
 
 // get local storage right
 // localStorage.setItem(selectedCategory);
