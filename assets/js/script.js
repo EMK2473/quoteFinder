@@ -1,3 +1,4 @@
+
 // using two different fetch request formats for learning purposes
 function displayQuoteResult(quoteText, author) {
   let quoteResult = document.getElementById("quoteResult");
@@ -143,3 +144,11 @@ submitAuthorButton.addEventListener("submit", function (event) {
       console.error("Error:", error);
     });
 });
+
+
+// get local storage right
+// localStorage.setItem(selectedCategory);
+// localStorage.setItem(authorText);
+// localStorage.setItem(word);
+// let storedSelectedCategory = localStorage.getItem(selectedCategory);
+// let storedAuthorText = localStorage.getItem("authorText");
