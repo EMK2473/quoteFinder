@@ -9,10 +9,9 @@
   </head>
 
   <body>
-    <p>Pick a category and submit for a random quote!</p>
-    <p>Use the Dictionary if you need to look up a word</p>
+    <p>Pick a category and click submit for a random quote.</p>
     <br />
-    <label for="categorySelect">Select a Category for a random quote:</label>
+    <label for="categorySelect">Select a Category:</label>
     <select id="categorySelect" name="categorySelect">
       <option value="age">age</option>
       <option value="alone">alone</option>
@@ -84,14 +83,20 @@
     </select>
     <button id="submitCategory" type="submit">Submit</button>
     <div id="quoteResult"></div>
+    <br>
+    <p>Use the Dictionary if you want to look up a word.</p>
+    <br>
     <form id="wordForm">
-      <label for="inputText">Look up a word in the dictionary:</label>
+      <label for="inputText">Look up a word:</label>
       <input type="text" id="inputText" name="inputText" />
       <input type="submit" value="Submit" />
     </form>
     <div id="result"></div>
+    <br>
+    <p>You can look up the author of the quote, too!</p>
+    <br>
     <form id="authorForm">
-      <label for="authorText">Look up the author of the quote:</label>
+      <label for="authorText">Look up the author:</label>
       <input type="text" id="authorText" name="inputText" />
       <input type="submit" value="Submit" />
     </form>
