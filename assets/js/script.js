@@ -10,7 +10,7 @@ submitCategoryButton.addEventListener("click", function () {
   let categorySelect = document.getElementById("categorySelect");
   let selectedCategory = categorySelect.value;
 
-// using variable for url and api key fetchh method
+  // using variables for url and api key fetchh method
   let apiUrl =
     "https://api.api-ninjas.com/v1/quotes?category=" + selectedCategory;
   let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
@@ -57,8 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-
-// using function fetch url without variables method
+  // using function fetch url without variables method
   function fetchDefinition(word) {
     console.log("Input word:", word);
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`, {
@@ -98,3 +97,51 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+// new functions here
+function displayAuthor(authorData) {
+  let authorResult = document.getElementById("authorResult");
+  authorResult.innerHTML = `
+    <strong>Name:</strong> ${authorData.name}<br>
+    <strong>Title:</strong> ${authorData.title}<br>
+  `;
+}
+
+let submitAuthorButton = document.getElementById("authorForm");
+
+// event listener for author name submission
+submitAuthorButton.addEventListener("submit", function (event) {
+  event.preventDefault();
+  let authorText = document.getElementById("authorText").value;
+
+  // Construct the API URL for fetching author data
+  let apiUrl = `https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
+  let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
+
+  fetch(apiUrl, {
+    method: "GET",
+    headers: {
+      "X-Api-Key": apiKey,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network error");
+      }
+      return response.json();
+    })
+    .then((result) => {
+      if (result.length > 0) {
+        let authorData = result[0]; // Assuming the API returns an array of results
+        displayAuthor(authorData);
+        console.log(result);
+      } else {
+        authorResult.textContent = "Author not found.";
+        console.log("Author not found");
+        // You can display an error message if the author is not found
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
