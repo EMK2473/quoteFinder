@@ -113,7 +113,6 @@ submitAuthorButton.addEventListener("submit", function (event) {
   event.preventDefault();
   let authorText = document.getElementById("authorText").value;
 
-  // Construct the API URL for fetching author data
   let apiUrl = `https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
   let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
 
@@ -132,13 +131,12 @@ submitAuthorButton.addEventListener("submit", function (event) {
     })
     .then((result) => {
       if (result.length > 0) {
-        let authorData = result[0]; // Assuming the API returns an array of results
+        let authorData = result[0];
         displayAuthor(authorData);
         console.log(result);
       } else {
-        authorResult.textContent = "Author not found.";
         console.log("Author not found");
-        // You can display an error message if the author is not found
+        authorResult.textContent = "Author not found.";
       }
     })
     .catch((error) => {
