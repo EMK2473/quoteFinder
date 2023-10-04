@@ -1,21 +1,15 @@
-
-// using two different fetch request formats for learning purposes
 function displayQuoteResult(quoteText, author) {
   let quoteResult = document.getElementById("quoteResult");
   quoteResult.innerHTML = `<strong>Quote:</strong> ${quoteText}<br><strong>Author:</strong> ${author}`;
 }
 let submitCategoryButton = document.getElementById("submitCategory");
-
-// event listener for category selection
 submitCategoryButton.addEventListener("click", function () {
   let categorySelect = document.getElementById("categorySelect");
   let selectedCategory = categorySelect.value;
   localStorage.setItem("selectedCategory", selectedCategory);
-  // using variables for url and api key fetchh method
   let apiUrl =
     "https://api.api-ninjas.com/v1/quotes?category=" + selectedCategory;
   let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
-
   fetch(apiUrl, {
     method: "GET",
     headers: {
@@ -45,10 +39,8 @@ submitCategoryButton.addEventListener("click", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let form = document.getElementById("wordForm");
   let resultDiv = document.getElementById("result");
-
   form.addEventListener("submit", function (event) {
     event.preventDefault();
-
     let inputText = document.getElementById("inputText").value;
     localStorage.setItem("inputText", inputText);
     if (inputText.trim() !== "") {
@@ -57,8 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
       resultDiv.textContent = "Please enter a word.";
     }
   });
-
-  // using function fetch url without variables method
   function fetchDefinition(word) {
     console.log("Input word:", word);
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`, {
@@ -98,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// new functions here
 function displayAuthor(authorData) {
   let authorResult = document.getElementById("authorResult");
   authorResult.innerHTML = `
@@ -106,7 +95,6 @@ function displayAuthor(authorData) {
     <strong>Title:</strong> ${authorData.title}<br>
   `;
 }
-
 let submitAuthorButton = document.getElementById("authorForm");
 
 // event listener for author name submission
@@ -137,18 +125,11 @@ submitAuthorButton.addEventListener("submit", function (event) {
         console.log(result);
       } else {
         console.log("Author not found");
-        authorResult.textContent = "Author not found. Double check your spelling.";
+        authorResult.textContent =
+          "Author not found. Double check your spelling.";
       }
     })
     .catch((error) => {
       console.error("Error:", error);
     });
 });
-
-
-// get local storage right
-// localStorage.setItem(selectedCategory);
-// localStorage.setItem(authorText);
-// localStorage.setItem(word);
-// let storedSelectedCategory = localStorage.getItem(selectedCategory);
-// let storedAuthorText = localStorage.getItem("authorText");
