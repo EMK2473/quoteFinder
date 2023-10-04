@@ -1,2 +1,2 @@
-# wordFinder
-word finder and dictionary
+# quoteFinder
+Quote finder and dictionary
