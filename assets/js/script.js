@@ -1,3 +1,4 @@
+
 // using two different fetch request formats for learning purposes
 function displayQuoteResult(quoteText, author) {
   let quoteResult = document.getElementById("quoteResult");
@@ -136,13 +137,14 @@ submitAuthorButton.addEventListener("submit", function (event) {
         console.log(result);
       } else {
         console.log("Author not found");
-        authorResult.textContent = "Author not found.";
+        authorResult.textContent = "Author not found. Double check your spelling.";
       }
     })
     .catch((error) => {
       console.error("Error:", error);
     });
 });
+
 
 // get local storage right
 // localStorage.setItem(selectedCategory);
